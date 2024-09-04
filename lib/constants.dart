@@ -10,3 +10,4 @@ List<Color> cardColors = [
   Colors.pinkAccent,
   Colors.tealAccent,
 ];
+Color primaryColor = Colors.blueAccent;
