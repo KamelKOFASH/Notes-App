@@ -6,8 +6,5 @@ List<Color> cardColors = [
   Colors.blueAccent,
   Colors.greenAccent,
   Colors.purpleAccent,
-  Colors.yellowAccent,
-  Colors.pinkAccent,
-  Colors.tealAccent,
 ];
 Color primaryColor = Colors.blueAccent;

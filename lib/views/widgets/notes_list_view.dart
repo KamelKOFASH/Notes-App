@@ -10,14 +10,17 @@ class NotesListView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Expanded(
-      child: ListView.builder(
-        physics: const BouncingScrollPhysics(),
-        itemCount: 12,
-        itemBuilder: (context, index) {
-          return NoteCard(
-            randomColor: cardColors[index % cardColors.length],
-          );
-        },
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 8.0),
+        child: ListView.builder(
+          physics: const BouncingScrollPhysics(),
+          itemCount: 12,
+          itemBuilder: (context, index) {
+            return NoteCard(
+              randomColor: cardColors[index % cardColors.length],
+            );
+          },
+        ),
       ),
     );
   }
