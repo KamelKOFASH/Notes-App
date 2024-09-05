@@ -21,8 +21,7 @@
 
 ## 📸 Screenshots
 
-![App Preview](path-to-your-screenshot.png)
-
+![App Preview](readme image/2.png)
 ---
 
 ## 💬 Contact Me

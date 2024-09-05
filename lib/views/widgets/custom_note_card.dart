@@ -4,19 +4,18 @@ import 'package:flutter/material.dart';
 class NoteCard extends StatelessWidget {
   const NoteCard({super.key, required this.randomColor, required this.onTap});
   final Color randomColor;
-final VoidCallback onTap;
+  final VoidCallback onTap;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: 
-      onTap,
+      onTap: onTap,
       child: Card(
         elevation: 10,
         shadowColor: Colors.black,
         margin: const EdgeInsets.all(6),
         color: randomColor,
         shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.all(Radius.circular(16)),
+          borderRadius: BorderRadius.all(Radius.circular(12)),
         ),
         clipBehavior: Clip.antiAliasWithSaveLayer,
         child: Column(
