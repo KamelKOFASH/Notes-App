@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:notes_app/constants.dart';
-import 'package:notes_app/views/widgets/add_note_bottom_sheet.dart';
 import 'package:notes_app/views/widgets/notes_view_body.dart';
 
 class HomeView extends StatelessWidget {
@@ -20,18 +19,5 @@ class HomeView extends StatelessWidget {
       ),
       body: const NotesViewBody(),
     );
-  }
-
-  Future<dynamic> showModelSheet(BuildContext context) {
-    return showModalBottomSheet(
-        shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.vertical(
-            top: Radius.circular(40),
-          ),
-        ),
-        context: context,
-        builder: (context) {
-          return const AddNoteBottomSheet();
-        });
   }
 }
