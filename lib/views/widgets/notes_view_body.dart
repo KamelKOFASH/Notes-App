@@ -8,16 +8,17 @@ class NotesViewBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Padding(
-      padding: EdgeInsets.symmetric(horizontal: 16.0),
+    return  Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16.0),
       child: Column(
         children: [
-          SizedBox(height: 40),
+          const SizedBox(height: 40),
           CustomAppBar(
+            
             title: 'Notes',
-            icon: CupertinoIcons.search_circle_fill,
+            icon: CupertinoIcons.search_circle_fill, onPressed: () {  },
           ),
-          NotesListView(),
+          const NotesListView(),
         ],
       ),
     );
