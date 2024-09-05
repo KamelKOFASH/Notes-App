@@ -23,9 +23,13 @@
 
 </br >
 <p align="center">
-  <img src="readme image/2.png" alt="Note app Home, Notes details page" style="width: 500; height: 500;">
-
-
+  <img src="readme image/2.png" alt="Note app Home, Notes details page" style="width: auto; height: auto;">
+</p>
+</br >
+---
+</br >
+<p align="center">
+  <img src="readme image/1.png" alt="Note app Home, Notes details page" style="width: auto; height: auto;">
 </p>
 </br >
 ---
