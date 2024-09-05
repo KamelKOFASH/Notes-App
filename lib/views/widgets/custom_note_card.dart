@@ -1,14 +1,24 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:notes_app/constants.dart';
+import 'package:notes_app/views/update_note_view.dart';
 
 class NoteCard extends StatelessWidget {
-  const NoteCard({super.key, required this.randomColor, required this.onTap});
+  const NoteCard({super.key, required this.randomColor, required this.index});
   final Color randomColor;
-  final VoidCallback onTap;
+  final int index;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: onTap,
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => UpdateNoteCard(
+                    color: cardColors[index % cardColors.length],
+                  )),
+        );
+      },
       child: Card(
         elevation: 10,
         shadowColor: Colors.black,

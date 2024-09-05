@@ -35,15 +35,7 @@ class NotesListView extends StatelessWidget {
           itemBuilder: (context, index) {
             return NoteCard(
               randomColor: cardColors[index % cardColors.length],
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => UpdateNoteCard(
-                            color: cardColors[index % cardColors.length],
-                          )),
-                );
-              },
+              index: index,
             );
           },
         ),
