@@ -22,12 +22,12 @@ class AddNoteBottomSheet extends StatelessWidget {
           const SizedBox(height: 20),
           const CustomTextField(
             text: 'Title',
-            colorEnabledSide: primaryColor,
+            colorEnabledSide: kPrimaryColor,
           ),
           const SizedBox(height: 20),
           const CustomTextField(
             text: 'description',
-            colorEnabledSide: primaryColor,
+            colorEnabledSide: kPrimaryColor,
             maxLines: 3,
           ),
           const SizedBox(height: 20),
@@ -57,7 +57,7 @@ class AddNoteBottomSheet extends StatelessWidget {
             onPressed: () {},
             style: ElevatedButton.styleFrom(
               foregroundColor: Colors.white,
-              backgroundColor: primaryColor,
+              backgroundColor: kPrimaryColor,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(10),
               ),

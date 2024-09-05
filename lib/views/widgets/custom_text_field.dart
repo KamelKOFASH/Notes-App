@@ -6,7 +6,7 @@ class CustomTextField extends StatelessWidget {
     super.key,
     required this.text,
     this.maxLines = 1,
-    this.colorFocusSide = primaryColor,
+    this.colorFocusSide = kPrimaryColor,
     this.colorEnabledSide = Colors.black,
   });
   final String text;

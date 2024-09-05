@@ -13,7 +13,7 @@ class HomeView extends StatelessWidget {
         onPressed: () {
           showModelSheet(context);
         },
-        backgroundColor: primaryColor,
+        backgroundColor: kPrimaryColor,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)),
         child: const Icon(CupertinoIcons.plus),
       ),
