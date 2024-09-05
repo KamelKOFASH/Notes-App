@@ -45,7 +45,7 @@ class AddNoteBottomSheet extends StatelessWidget {
                 color: Colors.blueAccent,
               ),
               CircleColorButton(
-                color: Colors.greenAccent,
+                color: Color.fromARGB(250, 60, 130, 60),
               ),
               CircleColorButton(
                 color: Colors.purpleAccent,

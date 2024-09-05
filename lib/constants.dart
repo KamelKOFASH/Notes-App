@@ -5,7 +5,7 @@ List<Color> cardColors = [
   Colors.orangeAccent,
   Colors.redAccent,
   Colors.blueAccent,
-  Colors.greenAccent,
+  const Color.fromARGB(250, 60, 130, 60),
   Colors.purpleAccent,
 ];
 const Color primaryColor = Colors.blueAccent;
