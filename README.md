@@ -21,7 +21,11 @@
 
 ## 📸 Screenshots
 
-![App Preview](readme image/2.png)
+</br >
+<p align="center">
+  <img src="readme image/readme image\2.png" alt="Note app Home, Notes details page" style="width: 1100px; height: auto;">
+</p>
+</br >
 ---
 
 ## 💬 Contact Me
