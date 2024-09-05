@@ -40,8 +40,17 @@ class UpdateNoteCard extends StatelessWidget {
   final Color color;
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: color,
+    return SizedBox(
+      height: MediaQuery.of(context).size.height * 0.5,
+      child: Scaffold(
+        backgroundColor: color,
+        body: const Center(
+          child: Text('Update Note',
+              style: TextStyle(
+                color: Colors.black,
+              )),
+        ),
+      ),
     );
   }
 }
