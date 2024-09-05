@@ -12,16 +12,7 @@ class HomeView extends StatelessWidget {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          showModalBottomSheet(
-              shape: const RoundedRectangleBorder(
-                borderRadius: BorderRadius.vertical(
-                  top: Radius.circular(40),
-                ),
-              ),
-              context: context,
-              builder: (context) {
-                return const AddNoteBottomSheet();
-              });
+          showModelSheet(context);
         },
         backgroundColor: primaryColor,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)),
@@ -29,5 +20,18 @@ class HomeView extends StatelessWidget {
       ),
       body: const NotesViewBody(),
     );
+  }
+
+  Future<dynamic> showModelSheet(BuildContext context) {
+    return showModalBottomSheet(
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.vertical(
+            top: Radius.circular(40),
+          ),
+        ),
+        context: context,
+        builder: (context) {
+          return const AddNoteBottomSheet();
+        });
   }
 }
