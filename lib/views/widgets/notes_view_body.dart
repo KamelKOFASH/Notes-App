@@ -13,7 +13,10 @@ class NotesViewBody extends StatelessWidget {
       child: Column(
         children: [
           SizedBox(height: 40),
-          CustomAppBar(),
+          CustomAppBar(
+            title: 'Notes',
+            icon: CupertinoIcons.search_circle_fill,
+          ),
           NotesListView(),
         ],
       ),

@@ -59,7 +59,7 @@ class NoteCard extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16.0),
               child: Text(
-                'May 15, 2023',
+                'May 16, 2024',
                 style: TextStyle(
                   color: Colors.black.withOpacity(0.5),
                   fontWeight: FontWeight.w500,

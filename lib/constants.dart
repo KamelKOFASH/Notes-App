@@ -8,7 +8,7 @@ List<Color> cardColors = [
   Colors.greenAccent,
   Colors.purpleAccent,
 ];
-Color primaryColor = Colors.blueAccent;
+const Color primaryColor = Colors.blueAccent;
 
 Future<dynamic> showModelSheet(BuildContext context) {
   return showModalBottomSheet(
