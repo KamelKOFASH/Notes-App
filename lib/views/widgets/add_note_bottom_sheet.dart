@@ -9,26 +9,36 @@ class AddNoteBottomSheet extends StatelessWidget {
   const AddNoteBottomSheet({super.key});
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: BlocConsumer<AddNoteCubit, AddNoteState>(
-        listener: (context, state) {
-          if (state is AddNoteSuccess) {
-            Navigator.pop(context);
-          }
-          if (state is AddNoteFailed) {
-            AwesomeSnackbarContent(
-              title: 'Some Mistake',
-              message: state.error,
+    return BlocConsumer<AddNoteCubit, AddNoteState>(
+      listener: (context, state) {
+        if (state is AddNoteSuccess) {
+          Navigator.pop(context);
+        }
+        if (state is AddNoteFailed) {
+          const snackBar = SnackBar(
+            elevation: 1,
+            behavior: SnackBarBehavior.floating,
+            backgroundColor: Colors.transparent,
+            content: AwesomeSnackbarContent(
+              title: 'On Snap!',
+              message: 'Failed to add note, Please try again!',
               contentType: ContentType.failure,
-            );
-          }
-        },
-        builder: (context, state) {
-          return ModalProgressHUD(
-              inAsyncCall: state is AddNoteLoading ? true : false,
-              child: const AddNoteForm());
-        },
-      ),
+            ),
+          );
+
+          ScaffoldMessenger.of(context)
+            ..hideCurrentSnackBar()
+            ..showSnackBar(snackBar);
+        }
+      },
+      builder: (context, state) {
+        return ModalProgressHUD(
+          inAsyncCall: state is AddNoteLoading ? true : false,
+          child: const SingleChildScrollView(
+            child: AddNoteForm(),
+          ),
+        );
+      },
     );
   }
 }
