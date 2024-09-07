@@ -8,16 +8,25 @@ class CustomTextField extends StatelessWidget {
     this.maxLines = 1,
     this.colorFocusSide = kPrimaryColor,
     this.colorEnabledSide = Colors.black,
+    this.onSaved,
   });
   final String text;
   final int maxLines;
   final Color colorFocusSide;
   final Color colorEnabledSide;
+  final void Function(String?)? onSaved;
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 18.0),
-      child: TextField(
+      child: TextFormField(
+        onSaved: onSaved,
+        validator: (value) {
+          if (value == null || value.isEmpty) {
+            return 'Please enter some text';
+          }
+          return null;
+        },
         maxLines: maxLines,
         decoration: InputDecoration(
           border: const OutlineInputBorder(),

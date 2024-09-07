@@ -8,7 +8,31 @@ class AddNoteBottomSheet extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
+    return const SingleChildScrollView(
+      child: AddNoteForm(),
+    );
+  }
+}
+
+class AddNoteForm extends StatefulWidget {
+  const AddNoteForm({
+    super.key,
+  });
+
+  @override
+  State<AddNoteForm> createState() => _AddNoteFormState();
+}
+
+class _AddNoteFormState extends State<AddNoteForm> {
+  GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
+  String? title;
+  String? description;
+  @override
+  Widget build(BuildContext context) {
+    return Form(
+      key: formKey,
+      autovalidateMode: autovalidateMode,
       child: Column(
         children: [
           const SizedBox(height: 20),
@@ -20,15 +44,21 @@ class AddNoteBottomSheet extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 20),
-          const CustomTextField(
+          CustomTextField(
             text: 'Title',
             colorEnabledSide: kPrimaryColor,
+            onSaved: (p0) {
+              title = p0;
+            },
           ),
           const SizedBox(height: 20),
-          const CustomTextField(
+          CustomTextField(
             text: 'description',
             colorEnabledSide: kPrimaryColor,
             maxLines: 3,
+            onSaved: (p0) {
+              description = p0;
+            },
           ),
           const SizedBox(height: 20),
           const Row(
@@ -54,7 +84,16 @@ class AddNoteBottomSheet extends StatelessWidget {
           ),
           const SizedBox(height: 20),
           ElevatedButton(
-            onPressed: () {},
+            onPressed: () {
+              if (formKey.currentState!.validate()) {
+                formKey.currentState!.save();
+                // * Navigator.pop(context, {'title': title, 'description': description});
+              } else {
+                setState(() {
+                  autovalidateMode = AutovalidateMode.always;
+                });
+              }
+            },
             style: ElevatedButton.styleFrom(
               foregroundColor: Colors.white,
               backgroundColor: kPrimaryColor,
