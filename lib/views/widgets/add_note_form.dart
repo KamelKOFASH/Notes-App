@@ -85,7 +85,6 @@ class _AddNoteFormState extends State<AddNoteForm> {
                   date: DateTime.now().toString(),
                   color: Colors.orangeAccent.value,
                 ));
-                Navigator.pop(context);
               } else {
                 setState(() {
                   autovalidateMode = AutovalidateMode.always;
