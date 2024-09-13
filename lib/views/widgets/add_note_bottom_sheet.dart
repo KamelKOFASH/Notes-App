@@ -1,4 +1,3 @@
-import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
@@ -23,8 +22,8 @@ class AddNoteBottomSheet extends StatelessWidget {
           if (state is AddNoteFailed) {}
         },
         builder: (context, state) {
-          return ModalProgressHUD(
-            inAsyncCall: state is AddNoteLoading ? true : false,
+          return AbsorbPointer(
+            absorbing: state is AddNoteLoading ? true : false,
             child: const SingleChildScrollView(
               child: AddNoteForm(),
             ),

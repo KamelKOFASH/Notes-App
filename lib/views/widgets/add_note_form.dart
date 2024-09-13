@@ -20,6 +20,7 @@ class _AddNoteFormState extends State<AddNoteForm> {
   AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
   String? title;
   String? description;
+  late bool isLoading;
   @override
   Widget build(BuildContext context) {
     return Form(
@@ -75,30 +76,45 @@ class _AddNoteFormState extends State<AddNoteForm> {
             ],
           ),
           const SizedBox(height: 20),
-          ElevatedButton(
-            onPressed: () {
-              if (formKey.currentState!.validate()) {
-                formKey.currentState!.save();
-                BlocProvider.of<AddNoteCubit>(context).addNote(NoteModel(
-                  title: title!,
-                  description: description!,
-                  date: DateTime.now().toString(),
-                  color: Colors.orangeAccent.value,
-                ));
-              } else {
-                setState(() {
-                  autovalidateMode = AutovalidateMode.always;
-                });
-              }
+          BlocBuilder<AddNoteCubit, AddNoteState>(
+            builder: (context, state) {
+              state is AddNoteLoading ? isLoading = true : isLoading = false;
+              return Container(
+                width: double.infinity,
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: ElevatedButton(
+                  onPressed: () {
+                    if (formKey.currentState!.validate()) {
+                      formKey.currentState!.save();
+                      BlocProvider.of<AddNoteCubit>(context).addNote(NoteModel(
+                        title: title!,
+                        description: description!,
+                        date: DateTime.now().toString(),
+                        color: Colors.orangeAccent.value,
+                      ));
+                    } else {
+                      setState(() {
+                        autovalidateMode = AutovalidateMode.always;
+                      });
+                    }
+                  },
+                  style: ElevatedButton.styleFrom(
+                    foregroundColor: Colors.white,
+                    backgroundColor: kPrimaryColor,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                  ),
+                  child: isLoading
+                      ? const SizedBox(
+                          height: 20,
+                          width: 20,
+                          child: CircularProgressIndicator(),
+                        )
+                      : const Text('Add Note'),
+                ),
+              );
             },
-            style: ElevatedButton.styleFrom(
-              foregroundColor: Colors.white,
-              backgroundColor: kPrimaryColor,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10),
-              ),
-            ),
-            child: const Text('Add Note'),
           ),
         ],
       ),
