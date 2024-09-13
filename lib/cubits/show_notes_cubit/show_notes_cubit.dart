@@ -1,5 +1,5 @@
 import 'package:bloc/bloc.dart';
-import 'package:hive_flutter/hive_flutter.dart';
+import 'package:hive/hive.dart';
 import 'package:meta/meta.dart';
 import 'package:notes_app/constants.dart';
 import 'package:notes_app/models/note_model.dart';
@@ -10,12 +10,9 @@ class ShowNotesCubit extends Cubit<ShowNotesState> {
   ShowNotesCubit() : super(ShowNotesInitial());
 
   void getNotes() async {
-    emit(ShowNotesLoading());
     try {
-      final box = await Hive.openBox<NoteModel>(kNotesBox);
-      final notes = box.values.toList();
-
-      emit(ShowNotesSuccess());
+      var box = Hive.box<NoteModel>(kNotesBox);
+      emit(ShowNotesSuccess(box.values.toList()));
     } on Exception catch (e) {
       emit(ShowNotesFailed(e.toString()));
     }

@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:notes_app/constants.dart';
+import 'package:notes_app/cubits/show_notes_cubit/show_notes_cubit.dart';
 import 'package:notes_app/views/widgets/notes_view_body.dart';
 
 class HomeView extends StatelessWidget {
@@ -8,16 +10,20 @@ class HomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          showModelSheet(context);
-        },
-        backgroundColor: kPrimaryColor,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)),
-        child: const Icon(CupertinoIcons.plus),
+    return BlocProvider(
+      create: (context) => ShowNotesCubit(),
+      child: Scaffold(
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            showModelSheet(context);
+          },
+          backgroundColor: kPrimaryColor,
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)),
+          child: const Icon(CupertinoIcons.plus),
+        ),
+        body: const NotesViewBody(),
       ),
-      body: const NotesViewBody(),
     );
   }
 }
