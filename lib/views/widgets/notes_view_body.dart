@@ -22,10 +22,10 @@ class _NotesViewBodyState extends State<NotesViewBody> {
   }
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 24),
+    return const Padding(
+      padding: EdgeInsets.symmetric(horizontal: 24),
       child: Column(
-        children: const [
+        children: [
           SizedBox(
             height: 50,
           ),

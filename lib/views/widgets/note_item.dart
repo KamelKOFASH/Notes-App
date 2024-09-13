@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:notes_app/cubits/notes_cubit/notes_cubit.dart';
@@ -16,6 +17,7 @@ class NoteItem extends StatelessWidget {
           context,
           MaterialPageRoute(builder: (context) {
             return EditNoteView(
+              color: Color(note.color),
               note: note,
             );
           }),
@@ -35,7 +37,7 @@ class NoteItem extends StatelessWidget {
                 note.title,
                 style: const TextStyle(
                   fontSize: 26,
-                  color: Colors.black,
+                  color: Colors.white,
                 ),
               ),
               subtitle: Padding(
@@ -44,7 +46,7 @@ class NoteItem extends StatelessWidget {
                   note.subTitle,
                   style: TextStyle(
                     fontSize: 18,
-                    color: Colors.black.withOpacity(.4),
+                    color: Colors.white.withOpacity(.4),
                   ),
                 ),
               ),
@@ -55,8 +57,8 @@ class NoteItem extends StatelessWidget {
                   BlocProvider.of<NotesCubit>(context).fetchAllNotes();
                 },
                 icon: const Icon(
-                  Icons.delete,
-                  color: Colors.black,
+                  CupertinoIcons.trash,
+                  color: Colors.white,
                   size: 30,
                 ),
               ),
@@ -66,7 +68,7 @@ class NoteItem extends StatelessWidget {
               child: Text(
                 note.date,
                 style: TextStyle(
-                  color: Colors.black.withOpacity(.4),
+                  color: Colors.white.withOpacity(.4),
                 ),
               ),
             )
