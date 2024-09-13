@@ -1,26 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:notes_app/constants.dart';
+import 'package:intl/intl.dart';
 import 'package:notes_app/cubits/add_note_cubit/add_note_cubit.dart';
 import 'package:notes_app/models/note_model.dart';
-import 'package:notes_app/views/widgets/circle_color_button.dart';
-import 'package:notes_app/views/widgets/custom_text_field.dart';
+
+import 'colors_list_view.dart';
+import 'custom_button.dart';
+import 'custom_text_field.dart';
 
 class AddNoteForm extends StatefulWidget {
   const AddNoteForm({
-    super.key,
-  });
+    Key? key,
+  }) : super(key: key);
 
   @override
   State<AddNoteForm> createState() => _AddNoteFormState();
 }
 
 class _AddNoteFormState extends State<AddNoteForm> {
-  GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  final GlobalKey<FormState> formKey = GlobalKey();
+
   AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
-  String? title;
-  String? description;
-  late bool isLoading;
+
+  String? title, subTitle;
   @override
   Widget build(BuildContext context) {
     return Form(
@@ -28,93 +30,59 @@ class _AddNoteFormState extends State<AddNoteForm> {
       autovalidateMode: autovalidateMode,
       child: Column(
         children: [
-          const SizedBox(height: 20),
-          const Text(
-            'Add Note',
-            style: TextStyle(
-              fontSize: 20,
-              fontWeight: FontWeight.bold,
-            ),
+          const SizedBox(
+            height: 32,
           ),
-          const SizedBox(height: 20),
           CustomTextField(
-            text: 'Title',
-            colorEnabledSide: kPrimaryColor,
-            onSaved: (p0) {
-              title = p0;
+            onSaved: (value) {
+              title = value;
             },
+            hint: 'title',
           ),
-          const SizedBox(height: 20),
+          const SizedBox(
+            height: 16,
+          ),
           CustomTextField(
-            text: 'description',
-            colorEnabledSide: kPrimaryColor,
-            maxLines: 3,
-            onSaved: (p0) {
-              description = p0;
+            onSaved: (value) {
+              subTitle = value;
             },
+            hint: 'content',
+            maxLines: 5,
           ),
-          const SizedBox(height: 20),
-          const Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              Text('Pick a Color'),
-              CircleColorButton(
-                color: Colors.orangeAccent,
-              ),
-              CircleColorButton(
-                color: Colors.redAccent,
-              ),
-              CircleColorButton(
-                color: Colors.blueAccent,
-              ),
-              CircleColorButton(
-                color: Color.fromARGB(250, 60, 130, 60),
-              ),
-              CircleColorButton(
-                color: Colors.purpleAccent,
-              ),
-            ],
+          const SizedBox(
+            height: 32,
           ),
-          const SizedBox(height: 20),
+          const ColorsListView(),
+          const SizedBox(
+            height: 32,
+          ),
           BlocBuilder<AddNoteCubit, AddNoteState>(
             builder: (context, state) {
-              state is AddNoteLoading ? isLoading = true : isLoading = false;
-              return Container(
-                width: double.infinity,
-                padding: const EdgeInsets.symmetric(horizontal: 20),
-                child: ElevatedButton(
-                  onPressed: () {
-                    if (formKey.currentState!.validate()) {
-                      formKey.currentState!.save();
-                      BlocProvider.of<AddNoteCubit>(context).addNote(NoteModel(
+              return CustomButton(
+                isLoading: state is AddNoteLoading ? true : false,
+                onTap: () {
+                  if (formKey.currentState!.validate()) {
+                    formKey.currentState!.save();
+                    var currentDate = DateTime.now();
+
+                    var formattedCurrentDate =
+                        DateFormat('dd-mm-yyyy').format(currentDate);
+                    var noteModel = NoteModel(
                         title: title!,
-                        description: description!,
-                        date: DateTime.now().toString(),
-                        color: Colors.orangeAccent.value,
-                      ));
-                    } else {
-                      setState(() {
-                        autovalidateMode = AutovalidateMode.always;
-                      });
-                    }
-                  },
-                  style: ElevatedButton.styleFrom(
-                    foregroundColor: Colors.white,
-                    backgroundColor: kPrimaryColor,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                  ),
-                  child: isLoading
-                      ? const SizedBox(
-                          height: 20,
-                          width: 20,
-                          child: CircularProgressIndicator(),
-                        )
-                      : const Text('Add Note'),
-                ),
+                        subTitle: subTitle!,
+                        date: formattedCurrentDate,
+                        color: Colors.blue.value);
+                    BlocProvider.of<AddNoteCubit>(context).addNote(noteModel);
+                  } else {
+                    autovalidateMode = AutovalidateMode.always;
+                    setState(() {});
+                  }
+                },
               );
             },
+          ),
+          const SizedBox(
+            height: 16,
           ),
         ],
       ),

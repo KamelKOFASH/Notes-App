@@ -1,48 +1,52 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/src/widgets/container.dart';
+import 'package:flutter/src/widgets/framework.dart';
 import 'package:notes_app/constants.dart';
 
 class CustomTextField extends StatelessWidget {
-  const CustomTextField({
-    super.key,
-    required this.text,
-    this.maxLines = 1,
-    this.colorFocusSide = kPrimaryColor,
-    this.colorEnabledSide = Colors.black,
-    this.onSaved,
-  });
-  final String text;
+  const CustomTextField(
+      {super.key,
+      required this.hint,
+      this.maxLines = 1,
+      this.onSaved,
+      this.onChanged});
+
+  final String hint;
   final int maxLines;
-  final Color colorFocusSide;
-  final Color colorEnabledSide;
+
   final void Function(String?)? onSaved;
+
+  final Function(String)? onChanged;
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 18.0),
-      child: TextFormField(
-        onSaved: onSaved,
-        validator: (value) {
-          if (value == null || value.isEmpty) {
-            return 'Please enter some text';
-          }
+    return TextFormField(
+      onChanged: onChanged,
+      onSaved: onSaved,
+      validator: (value) {
+        if (value?.isEmpty ?? true) {
+          return 'Field is required ';
+        } else {
           return null;
-        },
-        maxLines: maxLines,
-        decoration: InputDecoration(
-          border: const OutlineInputBorder(),
-          labelStyle: TextStyle(color: colorFocusSide),
-          labelText: text,
-          focusedBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: colorFocusSide),
-            borderRadius: BorderRadius.circular(10),
-          ),
-          enabledBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: colorEnabledSide),
-            borderRadius: const BorderRadius.all(Radius.circular(10)),
-          ),
-        ),
-        cursorColor: colorFocusSide,
+        }
+      },
+      cursorColor: kPrimaryColor,
+      maxLines: maxLines,
+      decoration: InputDecoration(
+        hintText: hint,
+        border: buildBorder(),
+        enabledBorder: buildBorder(),
+        focusedBorder: buildBorder(kPrimaryColor),
       ),
     );
+  }
+
+  OutlineInputBorder buildBorder([color]) {
+    return OutlineInputBorder(
+        borderRadius: BorderRadius.circular(
+          8,
+        ),
+        borderSide: BorderSide(
+          color: color ?? Colors.white,
+        ));
   }
 }
