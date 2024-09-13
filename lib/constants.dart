@@ -12,7 +12,8 @@ const List<Color> cardColors = [
   Colors.purpleAccent,
 ];
 
-void showCustomSnackBar(BuildContext context, {required String message, ContentType contentType = ContentType.success}) {
+void showCustomSnackBar(BuildContext context,
+    {required String message, ContentType contentType = ContentType.success}) {
   final snackBar = SnackBar(
     elevation: 0,
     behavior: SnackBarBehavior.fixed,
@@ -32,6 +33,7 @@ void showCustomSnackBar(BuildContext context, {required String message, ContentT
 
 Future<dynamic> showModelSheet(BuildContext context) {
   return showModalBottomSheet(
+      isScrollControlled: true,
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(
           top: Radius.circular(40),
