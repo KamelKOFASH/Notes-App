@@ -4,8 +4,7 @@ import 'custom_icon.dart';
 
 class CustomAppBar extends StatelessWidget {
   const CustomAppBar(
-      {Key? key, required this.title, required this.icon, this.onPressed})
-      : super(key: key);
+      {super.key, required this.title, required this.icon, this.onPressed});
 
   final String title;
   final IconData icon;
