@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:notes_app/cubits/notes_cubit/notes_cubit.dart';
 import 'package:notes_app/models/note_model.dart';
 
@@ -15,16 +16,16 @@ class NotesListView extends StatelessWidget {
       builder: (context, state) {
         List<NoteModel> notes = BlocProvider.of<NotesCubit>(context).notes!;
         return notes.isEmpty
-            ? const Center(
+            ? Center(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
                       'No Notes!',
-                      style: TextStyle(color: Colors.white, fontSize: 24),
+                      style: TextStyle(color: Colors.white, fontSize: 24.sp),
                     ),
-                    SizedBox(height: 8),
-                    Icon(CupertinoIcons.paperclip, color: Colors.white),
+                    SizedBox(height: MediaQuery.of(context).size.height / 10),
+                    const Icon(CupertinoIcons.paperclip, color: Colors.white),
                   ],
                 ),
               )

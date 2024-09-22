@@ -1,12 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:notes_app/cubits/notes_cubit/notes_cubit.dart';
 import 'package:notes_app/models/note_model.dart';
 import 'package:notes_app/views/edit_note_view.dart';
 
 class NoteItem extends StatelessWidget {
-  const NoteItem({Key? key, required this.note}) : super(key: key);
+  const NoteItem({super.key, required this.note});
 
   final NoteModel note;
   @override
@@ -35,8 +36,8 @@ class NoteItem extends StatelessWidget {
             ListTile(
               title: Text(
                 note.title,
-                style: const TextStyle(
-                  fontSize: 26,
+                style: TextStyle(
+                  fontSize: 26.sp,
                   color: Colors.white,
                 ),
               ),
@@ -45,7 +46,7 @@ class NoteItem extends StatelessWidget {
                 child: Text(
                   note.subTitle,
                   style: TextStyle(
-                    fontSize: 18,
+                    fontSize: 20.sp,
                     color: Colors.white.withOpacity(.4),
                   ),
                 ),
